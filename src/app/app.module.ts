@@ -8,6 +8,8 @@ import { UserModule } from './core/store/user/user.module';
 import { SignupComponent } from './components/signup/signup.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { StoreModule } from '@ngrx/store';
+import { UserService } from './core/services/user.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,9 +22,12 @@ import { StoreModule } from '@ngrx/store';
     AppRoutingModule,
     BrowserAnimationsModule,
     UserModule,
-    StoreModule.forRoot({})
+    StoreModule.forRoot({}),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
