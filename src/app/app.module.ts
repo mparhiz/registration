@@ -5,16 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserModule } from './core/store/user/user.module';
+import { SignupComponent } from './components/signup/signup.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SignupComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    UserModule
+    UserModule,
+    StoreModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent]
