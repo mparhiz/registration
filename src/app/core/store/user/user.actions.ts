@@ -43,3 +43,8 @@ export const UserFetchFailedAction = createAction(
     '[User] Fetch Failed',
     props<{ error: any }>()
 );
+
+//----- User Logout
+export const UserLogoutAction = createAction(
+    '[User] Logout Request'
+);

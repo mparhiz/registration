@@ -1,31 +1,41 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User, RegisterUser } from '../models/user.model';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class UserService {
     protected baseUrl: string = 'https://reqres.in/api/';
 
-    // mock employee info data
-    employeeInfoList: RegisterUser[] = [
-        { id: 1, firstName: "Alana", lastName: "Hammond", email: "Software Delivery", phone: "123456789", dob: "123" },
-        { id: 2, firstName: "Chris", lastName: "Thorburn", email: "Accounting", phone: "123456789", dob: "123" },
-        { id: 3, firstName: "Katrina", lastName: "Maguire", email: "HR", phone: "123456789", dob: "123" },
-        { id: 4, firstName: "Tony", lastName: "Burge", email: "Software Delivery", phone: "123456789", dob: "123" }
-    ];
-
     constructor(private http: HttpClient) { }
 
-    userLogin(email: string, password: string): Observable<string> {
+    userLogin(email: string, password: string): Observable<any> {
         const userLoginInfo = { email, password };
-        return this.http.post<string>(this.baseUrl + 'login', userLoginInfo);
+        return this.http.post<any>(this.baseUrl + 'login', userLoginInfo);
     }
     registerUser(email: string, password: string): Observable<any> {
         const userInfo = { email, password };
         return this.http.post<any>(this.baseUrl + 'register', userInfo);
     }
-    getUser(userId): Observable<User> {
-        return this.http.get<User>(this.baseUrl + 'users/' + userId);
+    getUser(userId): Observable<any> {
+        return this.http.get<any>(this.baseUrl + 'users/' + userId);
+    }
+    
+    // a service for checking exist emails
+    // this service uses a fake list of emails
+    emailCheck(email: string): Observable<boolean> {
+        let fakeExistEmails = [
+            "lindsay.ferguson@reqres.in",
+            "tobias.funke@reqres.in",
+            "byron.fields@reqres.in",
+            "george.edwards@reqres.in",
+            "rachel.howell@reqres.in",
+            "george.bluth@reqres.in",
+            "janet.weaver@reqres.in",
+            "emma.wong@reqres.in",
+            "charles.morris@reqres.in",
+            "tracey.ramos@reqres.in"
+        ];
+
+        return of(fakeExistEmails.includes(email));
     }
 }

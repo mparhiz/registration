@@ -1,1 +1,19 @@
-<p>profile works!</p>
+<p *ngIf="!user">Loading...</p>
+<div class="profile" *ngIf="user">
+    <mat-card >
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{user.first_name}}, {{user.last_name}}</mat-card-title>
+          <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="user.avatar" alt="Profile Photo">
+        <mat-card-content>
+          <p>
+            This is a profile of {{user.first_name}}, {{user.last_name}} with ID {{user.id}}.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-flat-button color="primary" (click)="onBackToHomePage()">Logout</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
